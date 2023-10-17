@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route }
     from 'react-router-dom';
-import { AppNavbar } from './navbar';
+import { AppNavbar, themeMode } from './navbar';
 import { Home } from './home';
 import { Input } from './input';
 import { Login } from './login';
@@ -11,11 +11,13 @@ import { Results } from './results';
 import { Three } from './three';
 import model from './json/model.json'
 
-function App() {
+const App = () => {
+  const [mode, changeMode] = useState(themeMode.Light)
+
   return (
-    <div className="App">
+    <div className="App" data-bs-theme={mode}>
         <Router>
-            <AppNavbar name="Ben Cannell"/>
+            <AppNavbar name="Ben Cannell" setMode={changeMode}/>
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />} />
