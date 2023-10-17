@@ -21,9 +21,9 @@ export const Home = () => {
   }, [time]);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className="Home">
+      <header className="Home-header">
+        <img src={logo} className="Home-logo" alt="logo" />
         <p></p>
         <h2 className="Home-progress">
           <AnimatedBar total={total} progress={time}/>
@@ -34,7 +34,7 @@ export const Home = () => {
         </h1>
         <p></p>
         <Link to='https://reactjs.org'>
-          <Button className="btn btn-info">Go to API</Button>
+          <Button className="btn btn-info">Go to I</Button>
         </Link>
       </header>
     </div>
