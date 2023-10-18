@@ -22,9 +22,9 @@ export const Input = ({jsonInput}:{jsonInput:object}) => {
 
   return (
     <Container>
-      <h1>svelte-jsoneditor in React</h1>
+      <h1 className="mx-2 py-4">svelte-jsoneditor in React</h1>
       <SelectFile jsonCallback={setJson}/>
-      <div className="my-editor">
+      <Container>
         <SvelteJSONEditor
           schema={schema}
           props = {{
@@ -32,7 +32,7 @@ export const Input = ({jsonInput}:{jsonInput:object}) => {
             onChange: updateContent
           }}
         />
-      </div>
+      </Container>
     </Container>
   );
 

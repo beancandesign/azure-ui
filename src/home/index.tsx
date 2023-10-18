@@ -1,8 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import logo from './../batch.png';
 import './home.css';
-import 'bootswatch/dist/yeti/bootstrap.min.css';
-import { Button } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import { AnimatedBar } from '../common/progress';
 
@@ -21,7 +20,7 @@ export const Home = () => {
   }, [time]);
 
   return (
-    <div className="Home">
+    <Container className="Home" data-bs-theme="dark">
       <header className="Home-header">
         <img src={logo} className="Home-logo" alt="logo" />
         <p></p>
@@ -37,6 +36,6 @@ export const Home = () => {
           <Button className="btn btn-info">Go to I</Button>
         </Link>
       </header>
-    </div>
+    </Container>
   );
 }

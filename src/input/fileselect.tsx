@@ -30,7 +30,7 @@ export const SelectFile = ({jsonCallback} : {jsonCallback: React.Dispatch<React.
   }
 
   return (
-    <Container className="my-2">
+    <Container className="py-4">
       <div className="input-group custom-file-button">
         <label
           className="input-group-text"

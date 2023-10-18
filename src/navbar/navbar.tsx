@@ -2,9 +2,11 @@ import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import logo from './batch.png';
+import logo from './../batch.png';
 import { MoonStarsFill, SunFill } from 'react-bootstrap-icons';
 import { Button } from 'react-bootstrap';
+import { Link, Outlet } from 'react-router-dom';
+import './navbar.css'
 
 export enum themeMode {
   Light = "light",
@@ -31,7 +33,6 @@ const ThemeToggle = ({setMode}: {setMode: React.Dispatch<React.SetStateAction<th
     <Button onClick={e => {
       setTheme(theme == themeMode.Light && themeMode.Dark || themeMode.Light);
       setMode(theme);
-      console.log(theme)
     }}
     style={{background: "transparent"}}>
       <ThemeIcon theme={theme}/>
@@ -44,7 +45,7 @@ export const AppNavbar = ({name, setMode} : {name: string, setMode: React.Dispat
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="/">
+        <Navbar.Brand>
           <img
             alt=""
             src={logo}
@@ -57,14 +58,26 @@ export const AppNavbar = ({name, setMode} : {name: string, setMode: React.Dispat
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           <Nav
+            variant="underline"
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="/input">Input</Nav.Link>
-            <Nav.Link href="/monitor">Monitor</Nav.Link>
-            <Nav.Link href="/results">Results</Nav.Link>
-            <Nav.Link href="/three">3D</Nav.Link>
+            <Nav.Link className='mx-2'>
+              <Link to="/" className='link'>Home</Link>
+            </Nav.Link>
+            <Nav.Link className='mx-2'>
+              <Link to="/input" className='link'>Input</Link>
+            </Nav.Link>
+            <Nav.Link className='mx-2'>
+              <Link to="/monitor" className='link'>Monitor</Link>
+            </Nav.Link>
+            <Nav.Link className='mx-2'>
+              <Link to="/results" className='link'>Results</Link>
+            </Nav.Link>
+            <Nav.Link className='mx-2'>
+              <Link to="/three" className='link'>3D</Link>
+            </Nav.Link>
           </Nav>
           <Nav className="justify-content-end">
             <div style={{paddingRight: "10px"}}>
@@ -78,6 +91,7 @@ export const AppNavbar = ({name, setMode} : {name: string, setMode: React.Dispat
         </Navbar.Collapse>
 
       </Container>
+      <Outlet/>
     </Navbar>
   )
 }

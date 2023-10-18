@@ -1,33 +1,28 @@
-import React, {useState} from 'react';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route }
-    from 'react-router-dom';
-import { AppNavbar, themeMode } from './navbar';
-import { Home } from './home';
-import { Input } from './input';
-import { Login } from './login';
-import { Monitor } from './monitor';
-import { Results } from './results';
-import { Three } from './three';
-import model from './json/model.json'
+import {useEffect, useState} from 'react';
+import { AppNavbar, themeMode } from './navbar/navbar';
+
+import { Container } from 'react-bootstrap';
+import { AppRouter } from './router/AppRouter';
 
 const App = () => {
   const [mode, changeMode] = useState(themeMode.Light)
 
+  const handeModeChange = (newMode: any) => {
+    changeMode(newMode)
+  }
+
+  useEffect(() => {
+    // Have to set the theme on the body tag otherwise it doesn't
+    // cascade down properly e.g. background gets inherited from the
+    // default body colour...which is white!
+    document.body.setAttribute("data-bs-theme", mode)
+  }, [mode])
+
   return (
-    <div className="App" data-bs-theme={mode}>
-        <Router>
-            <AppNavbar name="Ben Cannell" setMode={changeMode}/>
-            <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/login' element={<Login />} />
-                <Route path='/input' element={<Input jsonInput={model} />} />
-                <Route path='/monitor' element={<Monitor />} />
-                <Route path='/results' element={<Results />} />
-                <Route path='/three' element={<Three />} />
-            </Routes>
-        </Router>
-    </div>
+    <Container className="vh-100 px-0" fluid={true} data-bs-theme={mode}>
+      <AppNavbar name="Ben Cannell" setMode={handeModeChange}/>
+      <AppRouter />
+    </Container>
   );
 }
 

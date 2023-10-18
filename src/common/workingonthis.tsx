@@ -4,7 +4,7 @@ import Spinner from 'react-bootstrap/Spinner';
 
 export const WeAreWorkingOnThis = () => {
   return (
-    <Container>
+    <Container className="p-5">
       <Row className="justify-content-md-center">
         <Card style={{width: "18rem"}}>
           <Card.Header>We are working on this...</Card.Header>
