@@ -14,7 +14,7 @@ export enum themeMode {
 const ThemeIcon = ({theme} : {theme: themeMode}) => {
   if (theme === themeMode.Dark){
     return (
-      <MoonStarsFill/>
+      <MoonStarsFill color='black'/>
     )
   }
   else {
@@ -32,7 +32,8 @@ const ThemeToggle = ({setMode}: {setMode: React.Dispatch<React.SetStateAction<th
       setTheme(theme == themeMode.Light && themeMode.Dark || themeMode.Light);
       setMode(theme);
       console.log(theme)
-    }}>
+    }}
+    style={{background: "transparent"}}>
       <ThemeIcon theme={theme}/>
     </Button>
   )
@@ -41,8 +42,8 @@ const ThemeToggle = ({setMode}: {setMode: React.Dispatch<React.SetStateAction<th
 export const AppNavbar = ({name, setMode} : {name: string, setMode: React.Dispatch<React.SetStateAction<themeMode>>}) => {
 
   return (
-    <Navbar className="bg-body-tertiary justify-content-start">
-      <Container>
+    <Navbar expand="lg" className="bg-body-tertiary">
+      <Container fluid>
         <Navbar.Brand href="/">
           <img
             alt=""
@@ -53,24 +54,29 @@ export const AppNavbar = ({name, setMode} : {name: string, setMode: React.Dispat
           />{' '}
           GCP Job Manager
         </Navbar.Brand>
-        <Nav className="me-auto">
-          <Nav.Link href="/input">Input</Nav.Link>
-          <Nav.Link href="/monitor">Monitor</Nav.Link>
-          <Nav.Link href="/results">Results</Nav.Link>
-          <Nav.Link href="/three">3D</Nav.Link>
-        </Nav>
-        
-        <Navbar.Collapse className="justify-content-end">
-          <Navbar.Text>
-            Signed in as: <a href="login">{name}</a>
-          </Navbar.Text>
-          <Navbar.Text>
-            {'      '}
-          </Navbar.Text>
-          <Navbar.Text>
-            <ThemeToggle setMode={setMode}/>
-          </Navbar.Text>
+        <Navbar.Toggle aria-controls="navbarScroll" />
+        <Navbar.Collapse id="navbarScroll">
+          <Nav
+            className="me-auto my-2 my-lg-0"
+            style={{ maxHeight: '100px' }}
+            navbarScroll
+          >
+            <Nav.Link href="/input">Input</Nav.Link>
+            <Nav.Link href="/monitor">Monitor</Nav.Link>
+            <Nav.Link href="/results">Results</Nav.Link>
+            <Nav.Link href="/three">3D</Nav.Link>
+          </Nav>
+          <Nav className="justify-content-end">
+            <div style={{paddingRight: "10px"}}>
+              <ThemeToggle setMode={setMode}/>
+            </div>
+            <Navbar.Text>
+              Signed in as: <a href="login">{name}</a>
+            </Navbar.Text>
+          </Nav>
+          
         </Navbar.Collapse>
+
       </Container>
     </Navbar>
   )

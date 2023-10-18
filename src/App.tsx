@@ -21,7 +21,7 @@ const App = () => {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />} />
-                <Route path='/input' element={<Input jsonData={model} />} />
+                <Route path='/input' element={<Input jsonInput={model} />} />
                 <Route path='/monitor' element={<Monitor />} />
                 <Route path='/results' element={<Results />} />
                 <Route path='/three' element={<Three />} />
